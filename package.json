@@ -1,0 +1,12 @@
+{
+  "name": "docker-cloudns",
+  "version": "1.0.0",
+  "description": "Docker image for ClouDNS dynamic IP update",
+  "keywords": [
+    "cloudns",
+    "dynamic",
+    "dns"
+  ],
+  "author": "Pablo Ferraris",
+  "license": "MIT"
+}

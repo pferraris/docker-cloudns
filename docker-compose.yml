@@ -1,0 +1,10 @@
+version: '2'
+services:
+    cloudns:
+        container_name: cloudns
+        build:
+          context: .
+        restart: always
+        environment:
+          CLOUDNS_TOKEN: token_generated_by_web_for_target_domain
+          CLOUDNS_INTERVAL: 1800000
