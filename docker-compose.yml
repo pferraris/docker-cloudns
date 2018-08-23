@@ -6,5 +6,6 @@ services:
           context: .
         restart: always
         environment:
+          CLOUDNS_DOMAIN: domain.name
           CLOUDNS_TOKEN: token_generated_by_web_for_target_domain
           CLOUDNS_INTERVAL: 1800000
