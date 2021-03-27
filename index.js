@@ -1,9 +1,13 @@
-const dns = require('dns');
 const https = require('https');
+const { Resolver } = require('dns');
 
 const domain = process.env.CLOUDNS_DOMAIN; 
 const token = process.env.CLOUDNS_TOKEN;
 const interval = process.env.CLOUDNS_INTERVAL || 30 * 60 * 1000;
+const dnsServer = process.env.CLOUDNS_DNS_SERVER || '8.8.8.8';
+
+const resolver = new Resolver();
+resolver.setServers([dnsServer]);
 
 function callClouDNSUpdate(token) {
   return new Promise((resolve, reject) => {
@@ -26,7 +30,7 @@ function callClouDNSUpdate(token) {
 
 function getCurrentIP(domain) {
   return new Promise((resolve, reject) => {
-    dns.lookup(domain, (err, currentIp) => {
+    resolver.resolve4(domain, (err, currentIp) => {
       if (err) {
         reject(err);
       } else {
@@ -62,7 +66,7 @@ function updateIP() {
     console.log(`Real IP is ${realIP}`);
     return getCurrentIP(domain).then(currentIP => {
       console.log(`Current IP for ${domain} is ${currentIP}`);
-      if (currentIP !== realIP) {
+      if (currentIP != realIP) {
         return callClouDNSUpdate(token).then(response => {
           console.log(`IP ${realIP} updated successfully for ${domain}: ${response}`);
         });

@@ -9,3 +9,4 @@ services:
           CLOUDNS_DOMAIN: domain.name
           CLOUDNS_TOKEN: token_generated_by_web_for_target_domain
           CLOUDNS_INTERVAL: 1800000
+          CLOUDNS_DNS_SERVER: 8.8.8.8
