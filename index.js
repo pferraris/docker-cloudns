@@ -66,7 +66,7 @@ function updateIP() {
     console.log(`Real IP is ${realIP}`);
     return getCurrentIP(domain).then(currentIP => {
       console.log(`Current IP for ${domain} is ${currentIP}`);
-      if (currentIP !== realIP) {
+      if (currentIP != realIP) {
         return callClouDNSUpdate(token).then(response => {
           console.log(`IP ${realIP} updated successfully for ${domain}: ${response}`);
         });
